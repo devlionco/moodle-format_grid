@@ -575,7 +575,7 @@ class format_grid_renderer extends format_section_renderer_base {
                 $url->param('sesskey', sesskey());
                 $pinnedsection = get_string('pinnedsection', 'format_grid');
                 $topuninsection = get_string('tounpinsection', 'format_grid');
-                $controls['pinned'] = array('url' => $url, "icon" => 'i/marked',
+                $controls['pinned'] = array('url' => $url, "icon" => 'i/unlock',
                                                'name' => $topuninsection,
                                                'pixattr' => array('class' => '', 'alt' => $pinnedsection),
                                                'attr' => array('class' => 'editing_pinning', 'title' => $pinnedsection,
@@ -586,7 +586,7 @@ class format_grid_renderer extends format_section_renderer_base {
                 $url->param('sesskey', sesskey());
                 $unpinnedsection = get_string('unpinnedsection', 'format_grid');
                 $topinsection = get_string('topinsection', 'format_grid');
-                $controls['pinned'] = array('url' => $url, "icon" => 'i/marker',
+                $controls['pinned'] = array('url' => $url, "icon" => 'i/lock',
                                                'name' => $topinsection,
                                                'pixattr' => array('class' => '', 'alt' => $unpinnedsection),
                                                'attr' => array('class' => 'editing_highlight', 'title' => $unpinnedsection,
