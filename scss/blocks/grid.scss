@@ -1,0 +1,10 @@
+.gridicons > li {
+  transition: .3s;
+  opacity: 0;
+}
+
+
+.gridicons > li.pinned {
+  border: 1px solid  #1177d1;
+  margin-bottom: 50px;
+}
