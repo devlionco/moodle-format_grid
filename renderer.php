@@ -570,6 +570,29 @@ class format_grid_renderer extends format_section_renderer_base {
                                                'attr' => array('class' => 'editing_highlight',
                                                'data-action' => 'setmarker'));
             }
+            if ($section->pinned == 1) {  // alreday pinned section. show unpin icon
+                $url = course_get_url($course);
+                $url->param('pinned', 0);
+                $url->param('sesskey', sesskey());
+                $pinnedsection = get_string('pinnedsection', 'format_grid');
+                $topuninsection = get_string('tounpinsection', 'format_grid');
+                $controls['pinned'] = array('url' => $url, "icon" => 'i/unlock',
+                                               'name' => $topuninsection,
+                                               'pixattr' => array('class' => '', 'alt' => $pinnedsection),
+                                               'attr' => array('class' => 'editing_pinning', 'title' => $pinnedsection,
+                                               'data-action' => 'tounpinsection'));
+            } else {
+                $url = course_get_url($course);
+                $url->param('pinned', 1); // not pinned section. show pin icon
+                $url->param('sesskey', sesskey());
+                $unpinnedsection = get_string('unpinnedsection', 'format_grid');
+                $topinsection = get_string('topinsection', 'format_grid');
+                $controls['pinned'] = array('url' => $url, "icon" => 'i/lock',
+                                               'name' => $topinsection,
+                                               'pixattr' => array('class' => '', 'alt' => $unpinnedsection),
+                                               'attr' => array('class' => 'editing_highlight', 'title' => $unpinnedsection,
+                                               'data-action' => 'topinsection'));
+            }
         }
 
         $parentcontrols = parent::section_edit_control_items($course, $section, $onsectionpage);
