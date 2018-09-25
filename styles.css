@@ -372,13 +372,16 @@ body.jsenabled #gridshadebox_content.hide_content {
   padding-top: 60px; }
 
 #gridiconcontainer .gridicons > li.pinned:nth-of-type(1) {
-  right: calc(50% - 108px); }
+  right: 10%; }
 
 #gridiconcontainer .gridicons > li.pinned:nth-of-type(2) {
-  right: calc(50% - 310px); }
+  right: 32%; }
 
 #gridiconcontainer .gridicons > li.pinned:nth-of-type(3) {
-  right: calc(50%+108px); }
+  left: 32%; }
+
+#gridiconcontainer .gridicons > li.pinned:nth-of-type(4) {
+  left: 10%; }
 
 #gridiconcontainer .gridicons > li.pinned {
   position: absolute;
@@ -404,7 +407,26 @@ body.jsenabled #gridshadebox_content.hide_content {
     display: none; }
   #gridiconcontainer .gridicons > li.pinned .image_holder {
     display: none; }
-  @media (max-width: 1199px) {
+
+.single-section .mdl-right {
+  display: none; }
+
+.course-content .single-section {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column; }
+  .course-content .single-section .section-navigation {
+    -ms-flex-order: 1;
+        order: 1; }
+  .course-content .single-section ul.gtopics {
+    -ms-flex-order: 2;
+        order: 2; }
+
+.editing .single-section .mdl-right {
+  display: block; }
+
+@media (max-width: 1199px) {
   .gridshadebox_arrow {
     height: 40px;
     width: 40px; }
@@ -414,7 +436,8 @@ body.jsenabled #gridshadebox_content.hide_content {
     left: -40px; }
   .gridshadebox_next_area {
     right: -40px; } }
-  @media (max-width: 767px) {
+
+@media (max-width: 767px) {
   .gridcursor div#gridshadebox_overlay {/*rtl:ignore*/
     cursor: url("[[pix:format_grid|fa-times-circle-o-fsm]]"), auto; }
   .gridcursor #gridshadebox_close {/*rtl:ignore*/
@@ -437,7 +460,8 @@ body.jsenabled #gridshadebox_content.hide_content {
   .gridcursor .gridshadebox_next_area.ltr,
   .gridcursor .gridshadebox_previous_area.rtl {/*rtl:ignore*/
     cursor: url("[[pix:format_grid|fa-hand-o-right-fsm]]"), auto; } }
-  @media (max-width: 480px) {
+
+@media (max-width: 480px) {
   #gridshadebox_close {
     height: 20px;
     right: -7px;
