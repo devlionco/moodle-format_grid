@@ -558,6 +558,26 @@ class format_grid extends format_base {
 
             $courseconfig = get_config('moodlecourse');
             $courseformatoptions = array(
+                'displayunits' => array(
+                    'default' => 1,
+                    'type' => PARAM_RAW
+                ),
+                'displaymessages' => array(
+                    'default' => 1,
+                    'type' => PARAM_RAW
+                ),
+                'displaygrades' => array(
+                    'default' => 1,
+                    'type' => PARAM_RAW
+                ),
+                'showbagestag' => array(
+                    'default' => 1,
+                    'type' => PARAM_RAW
+                ),
+                'showcertificatestag' => array(
+                    'default' => 1,
+                    'type' => PARAM_RAW
+                ),
                 'hiddensections' => array(
                     'default' => $courseconfig->hiddensections,
                     'type' => PARAM_INT
@@ -709,6 +729,66 @@ class format_grid extends format_base {
                 $sectionmenu[$i] = "$i";
             }
             $courseformatoptionsedit = array(
+                'displayunits' => array(
+                    'label' => get_string('displayunits', 'format_grid'),
+                    'element_type' => 'select',
+                    'element_attributes' => array(
+                        array(
+                            1 => new lang_string('yes'),
+                            0 => new lang_string('no'),
+                        )
+                    ),
+                    'help' => "displayunitsdesc",
+                    'help_component' => 'format_grid',
+                ),
+                'displaymessages' => array(
+                    'label' => get_string('displaymessages', 'format_grid'),
+                    'element_type' => 'select',
+                    'element_attributes' => array(
+                        array(
+                            1 => new lang_string('yes'),
+                            0 => new lang_string('no'),
+                        )
+                    ),
+                    'help' => "displaymessagesdesc",
+                    'help_component' => 'format_grid',
+                ),
+                'displaygrades' => array(
+                    'label' => get_string('displaygrades', 'format_grid'),
+                    'element_type' => 'select',
+                    'element_attributes' => array(
+                        array(
+                            1 => new lang_string('yes'),
+                            0 => new lang_string('no'),
+                        )
+                    ),
+                    'help' => "displaygradesdesc",
+                    'help_component' => 'format_grid',
+                ),
+                'showbagestag' => array(
+                    'label' => get_string('showbagestag', 'format_grid'),
+                    'element_type' => 'select',
+                    'element_attributes' => array(
+                        array(
+                            1 => new lang_string('yes'),
+                            0 => new lang_string('no'),
+                        )
+                    ),
+                    'help' => "showbagestagdesc",
+                    'help_component' => 'format_grid',
+                ),
+                'showcertificatestag' => array(
+                    'label' => get_string('showcertificatestag', 'format_grid'),
+                    'element_type' => 'select',
+                    'element_attributes' => array(
+                        array(
+                            1 => new lang_string('yes'),
+                            0 => new lang_string('no'),
+                        )
+                    ),
+                    'help' => "showcertificatestagdesc",
+                    'help_component' => 'format_grid',
+                ),
                 'hiddensections' => array(
                     'label' => new lang_string('hiddensections'),
                     'help' => 'hiddensections',
@@ -723,7 +803,6 @@ class format_grid extends format_base {
                 ),
                 'nowpinned' => array (
                     'element_type' => 'hidden',
-                    'type' => PARAM_INT,
                 ),
                 'coursedisplay' => array(
                     'label' => new lang_string('coursedisplay'),

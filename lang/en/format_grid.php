@@ -304,3 +304,22 @@ $string['custommousepointers_desc'] = 'In Grid use custom mouse pointers.';
 
 // Privacy.
 $string['privacy:nop'] = 'The Grid format stores lots of settings that pertain to its configuration.  None of the settings are related to a specific user.  It is your responsibilty to ensure that no user data is entered in any of the free text fields.  Setting a setting will result in that action being logged within the core Moodle logging system against the user whom changed it, this is outside of the formats control, please see the core logging system for privacy compliance for this.  When uploading images, you should avoid uploading images with embedded location data (EXIF GPS) included or other such personal data.  It would be possible to extract any location / personal data from the images.  Please examine the code carefully to be sure that it complies with your interpretation of your privacy laws.  I am not a lawyer and my analysis is based on my interpretation.  If you have any doubt then remove the format forthwith.';
+
+// header blocks settings
+$string['displayunits'] = 'Display study units';
+$string['displayunitsdesc'] = 'Show or hide block';
+$string['displayunitsdesc_help'] = 'Show or hide block';
+$string['displaymessages'] = 'Display messages';
+$string['displaymessagesdesc'] = 'Show or hide block';
+$string['displaymessagesdesc_help'] = 'Show or hide block';
+$string['displaygrades'] = 'Display grades';
+$string['displaygradesdesc'] = 'Show or hide block';
+$string['displaygradesdesc_help'] = 'Show or hide block';
+
+$string['showbagestag'] = 'Display Badges block';
+$string['showbagestagdesc'] = 'Show or hide block';
+$string['showbagestagdesc_help'] = 'Show or hide block';
+$string['showcertificatestag'] = 'Display Certificates block';
+$string['showcertificatestagdesc'] = 'Show or hide block';
+$string['showcertificatestagdesc_help'] = 'Show or hide block';
+
