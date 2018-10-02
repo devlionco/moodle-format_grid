@@ -562,6 +562,10 @@ class format_grid extends format_base {
                     'default' => $courseconfig->hiddensections,
                     'type' => PARAM_INT
                 ),
+                'nowpinned' => array (
+                    'type' => PARAM_INT,
+                    'default' => 0 
+                ),
                 'coursedisplay' => array(
                     'default' => $courseconfig->coursedisplay,
                     'type' => PARAM_INT
@@ -716,6 +720,10 @@ class format_grid extends format_base {
                             1 => new lang_string('hiddensectionsinvisible')
                         )
                     ),
+                ),
+                'nowpinned' => array (
+                    'element_type' => 'hidden',
+                    'type' => PARAM_INT,
                 ),
                 'coursedisplay' => array(
                     'label' => new lang_string('coursedisplay'),
@@ -2507,9 +2515,22 @@ class format_grid extends format_base {
         if ($section->section && ($action === 'topinsection' || $action === 'tounpinsection')) {
             // Format 'grid' allows to pin and to unpin section in addition to common section actions.
             require_capability('moodle/course:setcurrentsection', context_course::instance($this->courseid));
-            $newpinnedstatus = ($action === 'topinsection') ? 1 : 0;
-            course_update_section($course, $section, array('pinned' => $newpinnedstatus));
-            return null;
+            $nowpinned = $this->get_course()->nowpinned;
+            //$newpinnedstatus = ($action === 'topinsection') ? 1 : 0;
+            if ($nowpinned < 4 && $action === 'topinsection') {
+                $newpinnedstatus = 1;
+                course_update_section($course, $section, array('pinned' => $newpinnedstatus));
+                $this->update_format_options(array('nowpinned' => ++$nowpinned));
+                //return null;
+                return $nowpinned;    
+            } else if ($action === 'tounpinsection') {
+                $newpinnedstatus = 0;
+                course_update_section($course, $section, array('pinned' => $newpinnedstatus));
+                $this->update_format_options(array('nowpinned' => --$nowpinned));
+                return null;    
+            } else if ($nowpinned >= 4) {
+                print_error('toomuch pinned sections');
+            }
         }
             
 
