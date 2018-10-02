@@ -43,7 +43,7 @@ $string['topicoutline'] = 'Section';  // No longer used kept for legacy versions
 
 // Moodle 2.0 Enhancement - Moodle Tracker MDL-15252, MDL-21693 & MDL-22056 - http://docs.moodle.org/en/Development:Languages.
 $string['sectionname'] = 'Section';
-$string['pluginname'] = 'Grid format';
+$string['pluginname'] = 'Stardust Grid format';
 $string['section0name'] = 'General';
 
 // WAI-ARIA - http://www.w3.org/TR/wai-aria/roles.
