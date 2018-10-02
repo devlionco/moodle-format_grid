@@ -408,6 +408,7 @@ body.jsenabled #gridshadebox_content.hide_content {
   #gridiconcontainer .gridicons > li.pinned .image_holder {
     display: none; }
 
+.single-section .mdl-left,
 .single-section .mdl-right {
   display: none; }
 
