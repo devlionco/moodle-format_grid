@@ -24,6 +24,14 @@
  * @author     Based on code originally written by Paul Krix and Julian Ridden.
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+ #page-course-view-grid ul:not(.gtopics-0) #section-0{
+     display:none;
+}
+.single-section h3.sectionname{
+  color:var(--primary);
+  font-size: 2.5rem;
+}
+
 .course-content .grid_title {
   font-size: 160%;
   font-weight: bold; }
