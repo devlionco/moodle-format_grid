@@ -25,21 +25,11 @@
  * @author     Based on code originally written by Paul Krix and Julian Ridden.
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-<<<<<<< HEAD
-=======
- #page-course-view-grid ul:not(.gtopics-0) #section-0{
-     display:none;
-}
-.single-section h3.sectionname{
-  color:var(--primary);
-  font-size: 2.5rem;
-}
 
 .course-content .grid_title {
-  font-size: 160%;
-  font-weight: bold; }
->>>>>>> 4c878cc... T-243 (update) small styles customization
-
+    font-size: 160%;
+    font-weight: bold;
+}
 .course-content ul.gtopics h3.sectionname {
     background: transparent;
     border: 0 none;
@@ -74,11 +64,11 @@ div#gridmiddle-column > ul {
 .course-content ul.gtopics li.section {
     list-style: none;
     margin: 5px 0 0 0;
-    padding: 0;
+    padding:0;
 }
 
 .course-content ul.gtopics li.section .content {
-    margin: 0 40px;
+    margin:0 40px;
 }
 
 .course-content ul.gtopics li.section .side {
@@ -146,7 +136,6 @@ div#gridmiddle-column > ul {
     background-color: white;
     color: black;
     height: 40px;
-    margin: auto;
     opacity: 0.8;
     overflow-wrap: break-word;
     padding: 10px;
@@ -155,21 +144,17 @@ div#gridmiddle-column > ul {
     white-space: pre-wrap;
     word-wrap: break-word;
 }
-.course-content ul.gridicons li .icon_content.content_inside.top {
-    left: 0;
-    right: 0;
-    top: 0;
-}
-
 .course-content ul.gridicons li .icon_content.content_inside.middle {
     bottom: 0;
     left: 0;
+    margin: auto;
     right: 0;
     top: 0;
 }
 .course-content ul.gridicons li .icon_content.content_inside.bottom {
     bottom: 0;
     left: 0;
+    margin: auto;
     right: 0;
 }
 
@@ -343,7 +328,7 @@ body.jsenabled #gridshadebox_content.hide_content {
     opacity: 0.9;
 }
 
-.gridshadebox_area {
+.gridshadebox_area  {
     height: 100%;
     position: absolute;
     top: 0;
@@ -463,8 +448,7 @@ body.jsenabled #gridshadebox_content.hide_content {
     right: -18px;
 }
 
-.gridshadebox_arrow.gridshadebox_mobile,
-.gridshadebox_arrow.gridshadebox_mobile:hover {
+.gridshadebox_arrow.gridshadebox_mobile, .gridshadebox_arrow.gridshadebox_mobile:hover {
     opacity: 1;
 }
 
@@ -492,8 +476,7 @@ body.jsenabled #gridshadebox_content.hide_content {
     right: -31px;
 }
 
-.gridshadebox_arrow.gridshadebox_tablet,
-.gridshadebox_arrow.gridshadebox_tablet:hover {
+.gridshadebox_arrow.gridshadebox_tablet, .gridshadebox_arrow.gridshadebox_tablet:hover {
     opacity: 1;
 }
 
@@ -505,126 +488,27 @@ body.jsenabled #gridshadebox_content.hide_content {
 .course-content ul.gridicons li .image_holder.inaccessible {
     background-color: #999;
     border-color: #aaa;
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
     filter: grayscale(100%);
     filter: gray; /* IE 6-9 */
     filter: alpha(opacity=70);
     opacity: 0.7;
 }
 /* @end */
-<<<<<<< HEAD
-=======
-#gridiconcontainer .gridicons > li {
-  transition: .3s;
-  opacity: 0; }
 
-#gridiconcontainer ul.gridicons {
-  position: relative;
-  padding-top: 60px; }
+#page-course-view-grid{
+  ul:not(.gtopics-0){
+    #section-0{
+      display:none;
+    }
+  }
+}
 
-#gridiconcontainer .gridicons > li.pinned:nth-of-type(1) {
-  right: 10%; }
-
-#gridiconcontainer .gridicons > li.pinned:nth-of-type(2) {
-  right: 32%; }
-
-#gridiconcontainer .gridicons > li.pinned:nth-of-type(3) {
-  left: 32%; }
-
-#gridiconcontainer .gridicons > li.pinned:nth-of-type(4) {
-  left: 10%; }
-
-#gridiconcontainer .gridicons > li.pinned {
-  position: absolute;
-  background-color: #19284f;
-  border-radius: 14px;
-  top: 0px;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-pack: center;
-      justify-content: center;
-  font-weight: 700;
-  font-size: 18px;
-  height: 55px;
-  line-height: 55px;
-  width: 170px;
-  overflow: hidden; }
-  #gridiconcontainer .gridicons > li.pinned .icon_content {
-    color: #fff;
-    height: auto; }
-  #gridiconcontainer .gridicons > li.pinned img {
-    display: none; }
-  #gridiconcontainer .gridicons > li.pinned .image_holder {
-    display: none; }
-
-.single-section .mdl-left,
-.single-section .mdl-right {
-  display: none; }
-
-.course-content .single-section {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column; }
-  .course-content .single-section .section-navigation {
-    -ms-flex-order: 1;
-        order: 1; }
-  .course-content .single-section ul.gtopics {
-    -ms-flex-order: 2;
-        order: 2; }
-
-.editing .single-section .mdl-right {
-  display: block; }
-
-@media (max-width: 1199px) {
-  .gridshadebox_arrow {
-    height: 40px;
-    width: 40px; }
-  .gridshadebox_area {
-    width: 40px; }
-  .gridshadebox_previous_area {
-    left: -40px; }
-  .gridshadebox_next_area {
-    right: -40px; } }
-
-@media (max-width: 767px) {
-  .gridcursor div#gridshadebox_overlay {/*rtl:ignore*/
-    cursor: url("[[pix:format_grid|fa-times-circle-o-fsm]]"), auto; }
-  .gridcursor #gridshadebox_close {/*rtl:ignore*/
-    cursor: url("[[pix:format_grid|fa-hand-o-up-fsm]]"), auto; }
-  #gridshadebox_close {
-    height: 28px;
-    width: 28px; }
-  .gridshadebox_arrow {
-    height: 30px;
-    width: 30px; }
-  .gridshadebox_area {
-    width: 30px; }
-  .gridshadebox_previous_area {
-    left: -30px; }
-  .gridshadebox_next_area {
-    right: -30px; }
-  .gridcursor .gridshadebox_previous_area.ltr,
-  .gridcursor .gridshadebox_next_area.rtl {/*rtl:ignore*/
-    cursor: url("[[pix:format_grid|fa-hand-o-left-fsm]]"), auto; }
-  .gridcursor .gridshadebox_next_area.ltr,
-  .gridcursor .gridshadebox_previous_area.rtl {/*rtl:ignore*/
-    cursor: url("[[pix:format_grid|fa-hand-o-right-fsm]]"), auto; } }
-
-@media (max-width: 480px) {
-  #gridshadebox_close {
-    height: 20px;
-    right: -7px;
-    top: -7px;
-    width: 20px; }
-  .gridshadebox_arrow {
-    height: 20px;
-    width: 20px; }
-  .gridshadebox_area {
-    width: 20px; }
-  .gridshadebox_previous_area {
-    left: -20px; }
-  .gridshadebox_next_area {
-    right: -20px; } }
->>>>>>> 207978e... (update) add style to pinned section
+.single-section h3.sectionname{
+  color:#1177d1;
+  color:var(--primary);
+  font-size: 2.5rem;
+}
