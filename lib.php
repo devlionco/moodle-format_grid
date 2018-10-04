@@ -556,8 +556,13 @@ class format_grid extends format_base {
      * @return array of options
      */
     public function course_format_options($foreditform = false) {
+        global $DB;
         static $courseformatoptions = false;
+<<<<<<< HEAD
         $courseconfig = null;
+=======
+        $course = $this->get_course();
+>>>>>>> ecbe243... T-250 Add settings to show/hide Attendance info block
 
         if ($courseformatoptions === false) {
             /* Note: Because 'admin_setting_configcolourpicker' in 'settings.php' needs to use a prefixing '#'
@@ -731,6 +736,24 @@ class format_grid extends format_base {
                     'type' => PARAM_INT
                 )
             );
+
+            // define display or not "attendanceinfo show/hide setting"
+            $attmodid = $DB->get_record('modules', array('name' => 'attendance'), 'id')->id; // get attendance module id in system
+            $att = $DB->get_record('course_modules', array('course' => $course->id, 'module' => $attmodid, 'deletioninprogress' => 0), 'instance', IGNORE_MULTIPLE); // get first attedndance instance on current course
+            if ($att) {
+                $courseformatoptions['displayattendanceinfo'] = array(
+                        'label' => get_string('displayattendanceinfo', 'format_grid'),
+                        'element_type' => 'select',
+                        'element_attributes' => array(
+                            array(
+                                1 => new lang_string('yes'),
+                                0 => new lang_string('no'),
+                            )
+                        ),
+                        'help' => "displayattendanceinfodesc",
+                        'help_component' => 'format_grid',
+                    );
+            }
         }
         if ($foreditform && !isset($courseformatoptions['coursedisplay']['label'])) {
             /* Note: Because 'admin_setting_configcolourpicker' in 'settings.php' needs to use a prefixing '#'
