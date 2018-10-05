@@ -18,7 +18,7 @@ const sections = Array.from(document.querySelectorAll(`.gridicons li`));
             item.style.opacity = 1;
           });
 
-          
+
           sectionsWrap.innerHTML = ``;
           pinned.forEach((item)=>{
             sectionsWrap.appendChild(item);
@@ -26,10 +26,7 @@ const sections = Array.from(document.querySelectorAll(`.gridicons li`));
           unpinned.forEach((item)=>{
             sectionsWrap.appendChild(item);
           });
-
-          console.dir('pinned '+pinned);
-          console.dir('unpinned_'+unpinned);
-
+          console.dir('init pinned section')
         }
     };
 });

@@ -1,7 +1,7 @@
 #gridiconcontainer {
   .gridicons > li {
     transition: .3s;
-    opacity: 0;
+    // opacity: 0;
   }
 
   ul.gridicons {
@@ -27,6 +27,10 @@
   .gridicons > li.pinned {
     position: absolute;
     background-color: #19284f;
+    background-image: url('[[pix:format_grid|pushpin]]');
+    background-size: 10%;
+    background-position: 10px;
+    background-repeat: no-repeat;
     border-radius: 14px;
     top: 0px;
     display: flex;
@@ -38,9 +42,19 @@
     line-height: 55px;
     width: 170px;
     overflow: hidden;
-    & .icon_content {
-      color: #fff;
-      height: auto;
+    & a {
+      display: flex;
+      justify-content: center;
+      flex-grow: 1;
+      & .icon_content {
+        color: #fff;
+        height: auto;
+        width: 74%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        text-align: center;
+      }
     }
     & img {
       display: none;
@@ -68,7 +82,15 @@
 
 // for edit mode
 .editing {
+  #gridiconcontainer .gridicons>li.pinned {
+    & a {
+      display: none;
+    }
+    & .gridicon_link {
+      display: flex;
+    }
 
+  }
   .single-section .mdl-right {
     display: block;
   }

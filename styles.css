@@ -372,8 +372,7 @@ body.jsenabled #gridshadebox_content.hide_content {
   font-size: 2.5rem; }
 
 #gridiconcontainer .gridicons > li {
-  transition: .3s;
-  opacity: 0; }
+  transition: .3s; }
 
 #gridiconcontainer ul.gridicons {
   position: relative;
@@ -394,6 +393,10 @@ body.jsenabled #gridshadebox_content.hide_content {
 #gridiconcontainer .gridicons > li.pinned {
   position: absolute;
   background-color: #19284f;
+  background-image: url("[[pix:format_grid|pushpin]]");
+  background-size: 10%;
+  background-position: 10px;
+  background-repeat: no-repeat;
   border-radius: 14px;
   top: 0px;
   display: -ms-flexbox;
@@ -408,9 +411,21 @@ body.jsenabled #gridshadebox_content.hide_content {
   line-height: 55px;
   width: 170px;
   overflow: hidden; }
-  #gridiconcontainer .gridicons > li.pinned .icon_content {
-    color: #fff;
-    height: auto; }
+  #gridiconcontainer .gridicons > li.pinned a {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+        justify-content: center;
+    -ms-flex-positive: 1;
+        flex-grow: 1; }
+    #gridiconcontainer .gridicons > li.pinned a .icon_content {
+      color: #fff;
+      height: auto;
+      width: 74%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      text-align: center; }
   #gridiconcontainer .gridicons > li.pinned img {
     display: none; }
   #gridiconcontainer .gridicons > li.pinned .image_holder {
@@ -431,6 +446,13 @@ body.jsenabled #gridshadebox_content.hide_content {
   .course-content .single-section ul.gtopics {
     -ms-flex-order: 2;
         order: 2; }
+
+.editing #gridiconcontainer .gridicons > li.pinned a {
+  display: none; }
+
+.editing #gridiconcontainer .gridicons > li.pinned .gridicon_link {
+  display: -ms-flexbox;
+  display: flex; }
 
 .editing .single-section .mdl-right {
   display: block; }
