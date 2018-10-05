@@ -257,4 +257,5 @@ if ($sectionparam != -1) {
 }
 
 // Include course format js module.
+// $PAGE->requires->js_call_amd('format_grid/pinned', 'init');
 $PAGE->requires->js('/course/format/grid/format.js');
