@@ -26,6 +26,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  #page-course-view-grid ul:not(.gtopics-0) #section-0{
      display:none;
@@ -35,6 +36,8 @@
   font-size: 2.5rem;
 }
 
+=======
+>>>>>>> d51a093... (update) translation
 .course-content .grid_title {
   font-size: 160%;
   font-weight: bold; }
@@ -512,7 +515,18 @@ body.jsenabled #gridshadebox_content.hide_content {
 }
 /* @end */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+#page-course-view-grid ul:not(.gtopics-0) #section-0 {
+  display: none; }
+
+.single-section h3.sectionname {
+  color: #1177d1;
+  color: var(--primary);
+  font-size: 2.5rem; }
+
+>>>>>>> d51a093... (update) translation
 #gridiconcontainer .gridicons > li {
   transition: .3s;
   opacity: 0; }
