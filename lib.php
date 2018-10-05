@@ -580,6 +580,10 @@ class format_grid extends format_base {
                     'default' => 1,
                     'type' => PARAM_RAW
                 ),
+                'displayattendanceinfo' => array(
+                    'default' => 1,
+                    'type' => PARAM_RAW
+                ),
                 'hiddensections' => array(
                     'default' => $courseconfig->hiddensections,
                     'type' => PARAM_INT
@@ -718,23 +722,6 @@ class format_grid extends format_base {
                 )
             );
 
-            // define display or not "attendanceinfo show/hide setting"
-            $attmodid = $DB->get_record('modules', array('name' => 'attendance'), 'id')->id; // get attendance module id in system
-            $att = $DB->get_record('course_modules', array('course' => $course->id, 'module' => $attmodid, 'deletioninprogress' => 0), 'instance', IGNORE_MULTIPLE); // get first attedndance instance on current course
-            if ($att) {
-                $courseformatoptions['displayattendanceinfo'] = array(
-                        'label' => get_string('displayattendanceinfo', 'format_grid'),
-                        'element_type' => 'select',
-                        'element_attributes' => array(
-                            array(
-                                1 => new lang_string('yes'),
-                                0 => new lang_string('no'),
-                            )
-                        ),
-                        'help' => "displayattendanceinfodesc",
-                        'help_component' => 'format_grid',
-                    );
-            }
         }
         if ($foreditform && !isset($courseformatoptions['coursedisplay']['label'])) {
             /* Note: Because 'admin_setting_configcolourpicker' in 'settings.php' needs to use a prefixing '#'
@@ -748,8 +735,7 @@ class format_grid extends format_base {
             for ($i = 0; $i <= $courseconfig->maxsections; $i++) {
                 $sectionmenu[$i] = "$i";
             }
-            $courseformatoptionsedit = array(
-                'displayunits' => array(
+                $courseformatoptionsedit['displayunits'] = array(
                     'label' => get_string('displayunits', 'format_grid'),
                     'element_type' => 'select',
                     'element_attributes' => array(
@@ -760,8 +746,8 @@ class format_grid extends format_base {
                     ),
                     'help' => "displayunitsdesc",
                     'help_component' => 'format_grid',
-                ),
-                'displaymessages' => array(
+                );
+                $courseformatoptionsedit['displaymessages'] = array(
                     'label' => get_string('displaymessages', 'format_grid'),
                     'element_type' => 'select',
                     'element_attributes' => array(
@@ -772,8 +758,8 @@ class format_grid extends format_base {
                     ),
                     'help' => "displaymessagesdesc",
                     'help_component' => 'format_grid',
-                ),
-                'displaygrades' => array(
+                );
+                $courseformatoptionsedit['displaygrades'] = array(
                     'label' => get_string('displaygrades', 'format_grid'),
                     'element_type' => 'select',
                     'element_attributes' => array(
@@ -784,8 +770,8 @@ class format_grid extends format_base {
                     ),
                     'help' => "displaygradesdesc",
                     'help_component' => 'format_grid',
-                ),
-                'showbagestag' => array(
+                );
+                $courseformatoptionsedit['showbagestag'] = array(
                     'label' => get_string('showbagestag', 'format_grid'),
                     'element_type' => 'select',
                     'element_attributes' => array(
@@ -796,8 +782,8 @@ class format_grid extends format_base {
                     ),
                     'help' => "showbagestagdesc",
                     'help_component' => 'format_grid',
-                ),
-                'showcertificatestag' => array(
+                );
+                $courseformatoptionsedit['showcertificatestag'] = array(
                     'label' => get_string('showcertificatestag', 'format_grid'),
                     'element_type' => 'select',
                     'element_attributes' => array(
@@ -808,8 +794,25 @@ class format_grid extends format_base {
                     ),
                     'help' => "showcertificatestagdesc",
                     'help_component' => 'format_grid',
-                ),
-                'hiddensections' => array(
+                );
+                // define display or not "attendanceinfo show/hide setting"
+                $attmodid = $DB->get_record('modules', array('name' => 'attendance'), 'id')->id; // get attendance module id in system
+                $att = $DB->get_record('course_modules', array('course' => $course->id, 'module' => $attmodid, 'deletioninprogress' => 0), 'instance', IGNORE_MULTIPLE); // get first attedndance instance on current course
+                if ($att) {
+                    $courseformatoptions['displayattendanceinfo'] = array(
+                            'label' => get_string('displayattendanceinfo', 'format_grid'),
+                            'element_type' => 'select',
+                            'element_attributes' => array(
+                                array(
+                                    1 => new lang_string('yes'),
+                                    0 => new lang_string('no'),
+                                )
+                            ),
+                            'help' => "displayattendanceinfodesc",
+                            'help_component' => 'format_grid',
+                        );
+                }
+                $courseformatoptionsedit['hiddensections'] = array(
                     'label' => new lang_string('hiddensections'),
                     'help' => 'hiddensections',
                     'help_component' => 'moodle',
@@ -820,11 +823,11 @@ class format_grid extends format_base {
                             1 => new lang_string('hiddensectionsinvisible')
                         )
                     ),
-                ),
-                'nowpinned' => array (
+                );
+                $courseformatoptionsedit['nowpinned'] = array (
                     'element_type' => 'hidden',
-                ),
-                'coursedisplay' => array(
+                );
+                $courseformatoptionsedit['coursedisplay'] = array(
                     'label' => new lang_string('coursedisplay'),
                     'element_type' => 'select',
                     'element_attributes' => array(
@@ -835,8 +838,7 @@ class format_grid extends format_base {
                     ),
                     'help' => 'coursedisplay',
                     'help_component' => 'moodle',
-                )
-            );
+                );
             if (has_capability('format/grid:changeimagecontaineralignment', $context)) {
                 $courseformatoptionsedit['imagecontaineralignment'] = array(
                     'label' => new lang_string('setimagecontaineralignment', 'format_grid'),
