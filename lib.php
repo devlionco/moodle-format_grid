@@ -586,7 +586,8 @@ class format_grid extends format_base {
                     'type' => PARAM_RAW
                 ),
                 'displaysectionsnum' => array(
-                    'default' => $lastsecnum,
+                    // 'default' => $lastsecnum,
+                    'default' => 10,
                     'type' => PARAM_INT
                 ),
                 'hiddensections' => array(
@@ -819,13 +820,14 @@ class format_grid extends format_base {
                 }
 
                 // SG - generate select list for 'displaysectionsnum' option
-                $seclist = range(0, $lastsecnum);
+                //$seclist = range(0, $lastsecnum);
                 $courseformatoptionsedit['displaysectionsnum'] = array(
                     'label' => new lang_string('displaysectionsnum', 'format_grid'),
                     'help' => 'displaysectionsnum',
                     'help_component' => 'format_grid',
-                    'element_type' => 'select',
-                    'element_attributes' => array($seclist),
+                    'element_type' => 'text',
+                    //'element_type' => 'select',
+                    //'element_attributes' => array($seclist),
                 );
 
                 $courseformatoptionsedit['hiddensections'] = array(
