@@ -762,9 +762,15 @@ class format_grid_renderer extends format_section_renderer_base {
 
         // Start at 1 to skip the summary block or include the summary block if it's in the grid display.
         $coursenumsections = $this->courseformat->get_last_section_number();
+        $displaysectionsnum = $course->displaysectionsnum;
         $sections = $modinfo->get_section_info_all();
         for ($section = $this->section0attop ? 1 : 0; $section <= $coursenumsections; $section++) {
             $thissection = $sections[$section];
+
+            // skip hidden with 'displaysectionsnum option' section from the render for students (in non editing mode) 
+            if ($thissection->section > $displaysectionsnum && !$editing) {
+                continue;
+            }
 
             // Check if section is visible to user.
             $showsection = $thissection->uservisible ||
@@ -853,6 +859,9 @@ class format_grid_renderer extends format_section_renderer_base {
                 }
                 if ($thissection->pinned) {
                     $liattributes['class'] = 'pinned ';
+                }
+                if ($thissection->section > $displaysectionsnum && $editing) {
+                    $liattributes['class'] = 'hidden-section ';  // add class for not visible sections
                 }
                 if (!empty($summary)) {
                     $liattributes['aria-describedby'] = 'gridsectionsummary-'.$thissection->section;
@@ -1087,6 +1096,7 @@ class format_grid_renderer extends format_section_renderer_base {
         unset($sections[0]);
 
         $coursenumsections = $this->courseformat->get_last_section_number();
+        $displaysectionsnum = $course->displaysectionsnum;
 
         for ($section = 1; $section <= $coursenumsections; $section++) {
             $thissection = $modinfo->get_section_info($section);
@@ -1102,6 +1112,9 @@ class format_grid_renderer extends format_section_renderer_base {
             }
             if ($this->courseformat->is_section_current($section)) {
                 $sectionstyle .= ' current';
+            }
+            if ($thissection->section > $displaysectionsnum && $editing) {
+                $sectionstyle .= ' hidden-section'; // add class for not visible sections
             }
             $sectionstyle .= ' grid_section hide_section';
 

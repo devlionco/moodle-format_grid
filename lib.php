@@ -552,6 +552,7 @@ class format_grid extends format_base {
         global $DB;
         static $courseformatoptions = false;
         $course = $this->get_course();
+        $lastsecnum = $this->get_last_section_number();
 
         if ($courseformatoptions === false) {
             /* Note: Because 'admin_setting_configcolourpicker' in 'settings.php' needs to use a prefixing '#'
@@ -583,6 +584,10 @@ class format_grid extends format_base {
                 'displayattendanceinfo' => array(
                     'default' => 1,
                     'type' => PARAM_RAW
+                ),
+                'displaysectionsnum' => array(
+                    'default' => $lastsecnum,
+                    'type' => PARAM_INT
                 ),
                 'hiddensections' => array(
                     'default' => $courseconfig->hiddensections,
@@ -812,6 +817,17 @@ class format_grid extends format_base {
                             'help_component' => 'format_grid',
                         );
                 }
+
+                // SG - generate select list for 'displaysectionsnum' option
+                $seclist = range(0, $lastsecnum);
+                $courseformatoptionsedit['displaysectionsnum'] = array(
+                    'label' => new lang_string('displaysectionsnum', 'format_grid'),
+                    'help' => 'displaysectionsnum',
+                    'help_component' => 'format_grid',
+                    'element_type' => 'select',
+                    'element_attributes' => array($seclist),
+                );
+
                 $courseformatoptionsedit['hiddensections'] = array(
                     'label' => new lang_string('hiddensections'),
                     'help' => 'hiddensections',
