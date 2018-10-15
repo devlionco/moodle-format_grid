@@ -371,6 +371,16 @@ body.jsenabled #gridshadebox_content.hide_content {
   color: var(--primary);
   font-size: 2.5rem; }
 
+.format-grid .gtopics .section:not(.hidden-section) +
+.hidden-section:before {
+  content: "";
+  display: block;
+  position: static;
+  width: 100%;
+  height: 2px;
+  background-color: red;
+  margin: 2rem 0; }
+
 #gridiconcontainer .gridicons > li {
   transition: .3s; }
 
@@ -383,6 +393,9 @@ body.jsenabled #gridshadebox_content.hide_content {
       flex-flow: row wrap;
   -ms-flex-pack: start;
       justify-content: flex-start; }
+
+#gridiconcontainer .hidden-section {
+  opacity: 0.4; }
 
 #gridiconcontainer .gridicons.content_inside > li.pinned {
   position: absolute;
