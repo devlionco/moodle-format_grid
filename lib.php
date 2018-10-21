@@ -601,7 +601,8 @@ class format_grid extends format_base {
                     'type' => PARAM_RAW
                 ),
                 'displaysectionsnum' => array(
-                    'default' => $lastsecnum,
+                    // 'default' => $lastsecnum,
+                    'default' => 9999,       // 9999 - conditionally unlimited
                     'type' => PARAM_INT
                 ),
                 'hiddensections' => array(
@@ -837,6 +838,7 @@ class format_grid extends format_base {
 
                 // SG - generate select list for 'displaysectionsnum' option
                 $seclist = range(0, $lastsecnum);
+                $seclist += array(9999 => new lang_string('displayallsections', 'format_grid')); // add last item to select with value=9999 - conditionally unlimited sec number
                 $courseformatoptionsedit['displaysectionsnum'] = array(
                     'label' => new lang_string('displaysectionsnum', 'format_grid'),
                     'help' => 'displaysectionsnum',

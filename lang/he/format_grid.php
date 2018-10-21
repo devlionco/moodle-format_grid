@@ -327,3 +327,4 @@ $string['showcertificatestagdesc'] = 'צלמית תעודות';
 $string['showcertificatestagdesc_help'] = 'צלמית תעודות';
 $string['displaysectionsnum'] = 'מספר יחידות הוראה להצגה';
 $string['displaysectionsnum_help'] = 'בחר מספר יחידות הוראה להצגה, מורה ירא את כל היחידות';
+$string['displayallsections'] = 'All';
