@@ -2621,6 +2621,7 @@ class format_grid extends format_base {
 
     public function section_action($section, $action, $sr) {
         global $PAGE;
+        $course = $this->get_course();
 
         if ($section->section && ($action === 'setmarker' || $action === 'removemarker')) {
             // Format 'grid' allows to set and remove markers in addition to common section actions.
@@ -2652,7 +2653,6 @@ class format_grid extends format_base {
         }
             
         // SG - rewrite format core function section_action, to allow hide/show for sec0
-        $course = $this->get_course();
         $coursecontext = context_course::instance($course->id);
         switch($action) {
             case 'hide':
