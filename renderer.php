@@ -389,6 +389,8 @@ class format_grid_renderer extends format_section_renderer_base {
         }
 
         echo html_writer::start_tag('ul', array('class' => $gridiconsclass));
+        // pinned section block
+        echo html_writer::tag('div', '', array('class' => 'pinnedsections'));
         // Print all of the image containers.
         $this->make_block_icon_topics($coursecontext->id, $sections, $course, $editing, $hascapvishidsect, $urlpicedit);
         echo html_writer::end_tag('ul');
