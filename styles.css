@@ -562,8 +562,16 @@ body.jsenabled #gridshadebox_content.hide_content {
 #gridiconcontainer .hidden-section {
   opacity: 0.4; }
 
-#gridiconcontainer .gridicons > li.pinned {
-  position: absolute;
+#gridiconcontainer .pinnedsections {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: space-evenly;
+      justify-content: space-evenly;
+  margin-bottom: 10px; }
+
+#gridiconcontainer .gridicons .pinnedsections li.pinned {
+  position: static;
   background-color: #19284f;
   background-image: url("[[pix:format_grid|pushpin]]");
   background-size: 10%;
@@ -583,20 +591,14 @@ body.jsenabled #gridshadebox_content.hide_content {
   line-height: 55px;
   width: 170px;
   overflow: hidden; }
-  #gridiconcontainer .gridicons > li.pinned ~ li.pinned {
-    left: 25%; }
-    #gridiconcontainer .gridicons > li.pinned ~ li.pinned ~ li.pinned {
-      left: 50%; }
-      #gridiconcontainer .gridicons > li.pinned ~ li.pinned ~ li.pinned ~ li.pinned {
-        left: 75%; }
-  #gridiconcontainer .gridicons > li.pinned a {
+  #gridiconcontainer .gridicons .pinnedsections li.pinned a {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: center;
         justify-content: center;
     -ms-flex-positive: 1;
         flex-grow: 1; }
-    #gridiconcontainer .gridicons > li.pinned a .icon_content {
+    #gridiconcontainer .gridicons .pinnedsections li.pinned a .icon_content {
       color: #fff;
       height: auto;
       width: 74%;
@@ -604,19 +606,19 @@ body.jsenabled #gridshadebox_content.hide_content {
       white-space: nowrap;
       overflow: hidden;
       text-align: center; }
-  #gridiconcontainer .gridicons > li.pinned img {
+  #gridiconcontainer .gridicons .pinnedsections li.pinned img {
     display: none; }
-  #gridiconcontainer .gridicons > li.pinned .image_holder {
+  #gridiconcontainer .gridicons .pinnedsections li.pinned .image_holder {
     display: none; }
 
 #gridiconcontainer .gridicons li:not(.pinned) {
   -ms-flex-order: 2;
       order: 2; }
 
-.editing #gridiconcontainer .gridicons > li.pinned a {
+.editing #gridiconcontainer .gridicons .pinnedsections > li.pinned a {
   display: none; }
 
-.editing #gridiconcontainer .gridicons > li.pinned .gridicon_link {
+.editing #gridiconcontainer .gridicons .pinnedsections > li.pinned .gridicon_link {
   display: -ms-flexbox;
   display: flex; }
 
