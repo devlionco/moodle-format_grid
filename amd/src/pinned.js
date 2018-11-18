@@ -12,8 +12,15 @@ let pinnedSections = Array.from(GRIDSECTIONS.querySelectorAll(`.gridicons .pinne
 const addPinnedSection = () => {
   pinnedSections = Array.from(GRIDSECTIONS.querySelectorAll(`.gridicons .pinned`));
   pinnedWapper.innerHTML = ``;
+  pinnedSections.forEach((item)=>{
+    pinnedWapper.appendChild(item);
+  });
+}
 
-};
+const togglePinnedSectionIndicator = (target) => {
+   let buttonIndicator = target.firstChild;
+   buttonIndicator.title
+}
 
 
 
@@ -24,7 +31,14 @@ const addPinnedSection = () => {
           actionBlock.addEventListener('click', function(e){
             let target = e.target;
             while(!target.classList.contains(`gridcursor`)) {
+              // set pinned section
+
               if (target.dataset.action === `topinsection`) {
+                addPinnedSection();
+                return
+              }
+              // unset pinned section
+              if (target.dataset.action === `tounpinsection`) {
                 addPinnedSection();
                 return
               }
@@ -35,3 +49,24 @@ const addPinnedSection = () => {
         }
     };
 });
+
+
+
+// let pinned = [];
+// let unpinned = [];
+//
+// sections.forEach((item)=>{
+//   if (item.classList.contains(`pinned`)) {
+//     pinned.push(item);
+//   }else unpinned.push(item);
+//   item.style.opacity = 1;
+// });
+//
+//
+// sectionsWrap.innerHTML = ``;
+// pinned.forEach((item)=>{
+//   sectionsWrap.appendChild(item);
+// });
+// unpinned.forEach((item)=>{
+//   sectionsWrap.appendChild(item);
+// });

@@ -33,27 +33,15 @@
     opacity: 0.4;
   }
 
-  // .gridicons > li.pinned:nth-of-type(1) {
-  //   // right: calc(50% - 108px);
-  //   right: 10%;
-  // }
-  // .gridicons > li.pinned:nth-of-type(2) {
-  //   right: 32%;
-  // }
-  // .gridicons > li.pinned:nth-of-type(3) {
-  //   // right: calc(50%+108px);
-  //   left: 32%;
-  // }
-  // .gridicons > li.pinned:nth-of-type(4) {
-  //   left: 10%;
-  // }
+  .pinnedsections {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+  }
 
-  .gridicons > li.pinned {
-    // position: absolute;
-    // background: #19284f, url([[pix:format_grid|pushpin]]);
-    // background-position: 10% 50%, center;
-    //
-    position: absolute;
+  .gridicons .pinnedsections li.pinned {
+    position: static;
     background-color: #19284f;
     background-image: url('[[pix:format_grid|pushpin]]');
     background-size: 10%;
@@ -70,19 +58,7 @@
     line-height: 55px;
     width: 170px;
     overflow: hidden;
-    // left: 0;
-    ~ li.pinned{
-      left: 25%;
-      // left: 200px;
-      ~li.pinned{
-        left: 50%;
-        // left: 400px;
-        ~ li.pinned{
-          left: 75%;
-          // left: 600px;
-        }
-      }
-    }
+
     & a {
       display: flex;
       justify-content: center;
@@ -112,7 +88,7 @@
 
 // for edit mode
 .editing {
-  #gridiconcontainer .gridicons>li.pinned {
+  #gridiconcontainer  .gridicons .pinnedsections >li.pinned {
     & a {
       display: none;
     }
