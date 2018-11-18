@@ -387,6 +387,8 @@ class format_grid_renderer extends format_section_renderer_base {
         }
 
         echo html_writer::start_tag('ul', array('class' => $gridiconsclass));
+        // pinned section block
+        echo html_writer::tag('div', '', array('class' => 'pinnedsections'));
         // Print all of the image containers.
         $this->make_block_icon_topics($coursecontext->id, $modinfo, $course, $editing, $hascapvishidsect, $urlpicedit);
         echo html_writer::end_tag('ul');
@@ -809,7 +811,7 @@ class format_grid_renderer extends format_section_renderer_base {
         for ($section = $this->section0attop ? 1 : 0; $section <= $coursenumsections; $section++) {
             $thissection = $sections[$section];
 
-            // skip hidden with 'displaysectionsnum option' section from the render for students (in non editing mode) 
+            // skip hidden with 'displaysectionsnum option' section from the render for students (in non editing mode)
             if ($thissection->section > $displaysectionsnum && !$editing) {
                 continue;
             }
