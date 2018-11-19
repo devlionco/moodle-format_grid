@@ -2949,10 +2949,11 @@ class format_grid extends format_base {
                 $this->update_format_options(array('nowpinned' => --$nowpinned));
                 return null;
             } else if ($nowpinned >= 4) {
+                // show alert message from js
                 print_error('toomuch pinned sections');
             }
         }
-            
+
         // SG - rewrite format core function section_action, to allow hide/show for sec0
         $coursecontext = context_course::instance($course->id);
         switch($action) {
