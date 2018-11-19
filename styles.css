@@ -436,7 +436,7 @@ body.jsenabled #gridshadebox_content.hide_content {
     #gridiconcontainer .gridicons .pinnedsections li.pinned a .icon_content {
       color: #fff;
       height: auto;
-      width: 74%;
+      width: 120px;
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
