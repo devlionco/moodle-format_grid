@@ -24,7 +24,7 @@ const getSectionId = (target) => {
   while(!target.classList.contains(`section`)) {
     target = target.parentNode;
   }
-  return sectionId = target.id.replace(/\D+/,'');
+  return target.id.replace(/\D+/,'');
 }
 
 const addPinnedSection = (target) => {
@@ -51,28 +51,38 @@ const removePinnedSection = (target) => {
  * @returns {Integer}
  */
 const togglePinnedSectionIndicator = (target) => {
-  let pinbefore;
-  let pinafter;
+  let pinBefore;
+  let pinAfter;
+  let title;
+  let action;
+  let text;
+  let classBefore;
+  let classAfter;
+// TODO remove this function 
   if(target.dataset.action === `topinsection`){
-    pinbefore = 1;
-    pinafter = 0;
+    pinBefore = 0;
+    pinAfter = 1;
+    title = 'This section is pinned';
+    action = 'tounpinsection';
+    text = 'Unpun section';
+    classBefore = 'fa-lock';
+    classAfter = 'fa-unlock';
   } else {
-    pinbefore = 0;
-    pinafter = 1;
+    pinBefore = 1;
+    pinAfter = 0;
+    title = 'Pin this section to show it in the front';
+    action = 'topinsection';
+    text = 'Pin Section';
+    classBefore = 'fa-unlock';
+    classAfter = 'fa-lock';
   }
-    // item.href = item.href.replace('pinned=1', 'pinned=0');
-    // item.title = "This section is pinned";
-    // item.dataset.action = "tounpinsection";
-    // item.childNodes[0].classList = "icon fa fa-unlock fa-fw ";
-    // item.childNodes[0].title = "This section is pinned";
-    // item.childNodes[1].innerText = "Unpin section";
-    // var section = getClosest(item, 'li.section');
-    // var sectionIndex = section.id.replace( /\D+/g, '');
-    // document.querySelector('[aria-labelledby="gridsectionname-'+ sectionIndex +'"]').classList = 'pinned';
-    // pinned = document.querySelectorAll(`.gridicons .pinned`);
-    // pinnedGridLayout(wrapper, pinned, pinnedBlock);
-    target.href = "atik";
-    // document.querySelector(`a[id=section-${sectionnumber}] `).href = target.href.replace(`pinned=${pinbefore}`, `pinned=${pinafter}`);
+
+// TODO remove setTimeout
+    target.href = target.href.replace(`pinned=${pinBefore}`, `pinned=${pinAfter}`);
+    target.title = title;
+    setTimeout(function(){target.dataset.action = action;}, 2000)
+    target.firstChild.classList.replace(classBefore, classAfter);
+    target.lastChild.innerHTML = text;
 
 }
 
