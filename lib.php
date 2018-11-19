@@ -596,7 +596,7 @@ class format_grid extends format_base {
                 ),
                 'nowpinned' => array (
                     'type' => PARAM_INT,
-                    'default' => 0 
+                    'default' => 0
                 ),
                 'coursedisplay' => array(
                     'default' => $courseconfig->coursedisplay,
@@ -827,7 +827,7 @@ class format_grid extends format_base {
                     'help' => 'displaysectionsnum',
                     'help_component' => 'format_grid',
                     'element_type' => 'select',
-                    'element_attributes' => array($seclist), 
+                    'element_attributes' => array($seclist),
                 );
 
                 $courseformatoptionsedit['hiddensections'] = array(
@@ -2630,7 +2630,7 @@ class format_grid extends format_base {
             return null;
         }
 
-        // SG add custom actions: to pin and to unpin sections for grid format 
+        // SG add custom actions: to pin and to unpin sections for grid format
         if ($section->section && ($action === 'topinsection' || $action === 'tounpinsection')) {
             // Format 'grid' allows to pin and to unpin section in addition to common section actions.
             require_capability('moodle/course:setcurrentsection', context_course::instance($this->courseid));
@@ -2641,17 +2641,18 @@ class format_grid extends format_base {
                 course_update_section($course, $section, array('pinned' => $newpinnedstatus));
                 $this->update_format_options(array('nowpinned' => ++$nowpinned));
                 //return null;
-                return $nowpinned;    
+                return $nowpinned;
             } else if ($action === 'tounpinsection') {
                 $newpinnedstatus = 0;
                 course_update_section($course, $section, array('pinned' => $newpinnedstatus));
                 $this->update_format_options(array('nowpinned' => --$nowpinned));
-                return null;    
+                return null;
             } else if ($nowpinned >= 4) {
+                // show alert message from js
                 print_error('toomuch pinned sections');
             }
         }
-            
+
         // SG - rewrite format core function section_action, to allow hide/show for sec0
         $coursecontext = context_course::instance($course->id);
         switch($action) {
