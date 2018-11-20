@@ -834,6 +834,10 @@ class format_grid extends format_base {
                             'help' => "displayattendanceinfodesc",
                             'help_component' => 'format_grid',
                         );
+                } else {
+                    $courseformatoptions['displayattendanceinfo'] = array(
+                        'element_type' => 'hidden'
+                    );
                 }
 
                 // SG - generate select list for 'displaysectionsnum' option
