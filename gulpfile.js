@@ -14,6 +14,10 @@ var shell = require('gulp-shell');
 var jsmin = require('gulp-jsmin');
 
 
+gulp.task("test", function() {
+  del("styles.css");
+});
+
 gulp.task("clean", function() {
   del("styles.css");
 });
