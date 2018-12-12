@@ -691,7 +691,8 @@ class format_grid_renderer extends format_section_renderer_base {
 
         if ($editing) {
             echo html_writer::link(
-                            new moodle_url('editsection.php', array('id' => $sectionzero->id)),
+                            new moodle_url('editsection.php', array('id' => $thissection->id)),
+                            $streditsummary.' '.
                                 html_writer::empty_tag('img', array('src' => $urlpicedit,
                                                                      'alt' => $streditsummary,
                                                                      'class' => 'iconsmall edit')),
