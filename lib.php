@@ -599,7 +599,7 @@ class format_grid extends format_base {
                     'default' => 0
                 ),
                 'coursedisplay' => array(
-                    'default' => $courseconfig->coursedisplay,
+                    'default' => 1,             // SG -- force - 1 - COURSE_DISPLAY_MULTIPAGE - split pages into a page per section
                     'type' => PARAM_INT
                 ),
                 'imagecontaineralignment' => array(
