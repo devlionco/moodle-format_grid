@@ -687,7 +687,7 @@ body.jsenabled #gridshadebox_content.hide_content {
       flex-wrap: wrap; }
   .format-grid .course-content .section-navigation.mdl-bottom div.mdl-align {
     -ms-flex-order: 1;
-        order: 1;
+          order: 1;
     margin-right: 100%;
     margin-bottom: 10px; }
   .format-grid .course-content .section-navigation.mdl-bottom span.mdl-left,
