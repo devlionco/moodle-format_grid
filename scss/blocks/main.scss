@@ -511,23 +511,4 @@ body.jsenabled #gridshadebox_content.hide_content {
   color:#1177d1;
   color:var(--primary);
   font-size: 2.5rem;
-}
-
-.format-grid {
-    .course-content {
-      .section-navigation.mdl-bottom {
-        display: flex;
-        flex-wrap: wrap;
-        div.mdl-align {
-          order: 1;
-          margin-right: 100%;
-          margin-bottom: 10px;
-        }
-        span.mdl-left,
-        span.mdl-right {
-          order: 2;
-        }
-      }
-    }
-  }
-  
+}  
