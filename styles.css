@@ -381,6 +381,27 @@ body.jsenabled #gridshadebox_content.hide_content {
   background-color: red;
   margin: 2rem 0; }
 
+.format-grid .course-content .section-navigation.navigationtitle .mdl-left,
+.format-grid .course-content .section-navigation.navigationtitle .mdl-right {
+  display: none; }
+
+.format-grid .course-content .section-navigation.mdl-bottom {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+  .format-grid .course-content .section-navigation.mdl-bottom div.mdl-align {
+    -ms-flex-order: 1;
+        order: 1;
+    margin-right: 100%;
+    margin-bottom: 10px; }
+  .format-grid .course-content .section-navigation.mdl-bottom span.mdl-left {
+    -ms-flex-order: 2;
+        order: 2; }
+  .format-grid .course-content .section-navigation.mdl-bottom span.mdl-right {
+    -ms-flex-order: 3;
+        order: 3; }
+
 #gridiconcontainer ul.gridicons {
   position: relative;
   padding-top: 60px;

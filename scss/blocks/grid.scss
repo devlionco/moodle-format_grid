@@ -14,6 +14,32 @@
   }
 }
 
+.format-grid {
+    .course-content {
+      .section-navigation.navigationtitle {
+        .mdl-left,
+        .mdl-right {
+          display: none;
+        }
+      }
+      .section-navigation.mdl-bottom {
+        display: flex;
+        flex-wrap: wrap;
+        div.mdl-align {
+          order: 1;
+          margin-right: 100%;
+          margin-bottom: 10px;
+        }
+        span.mdl-left {
+          order: 2;
+        }
+        span.mdl-right {
+          order: 3;
+        }
+      }
+    }
+}
+
 #gridiconcontainer {
 
   ul.gridicons {
