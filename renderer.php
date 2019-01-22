@@ -246,6 +246,56 @@ class format_grid_renderer extends format_section_renderer_base {
     }
 
     /**
+     * Returns info about course sections. Is used in header qick navigation
+     *
+     * @param course_modinfo $courseinfo
+     * @param int $currentsectionnum
+     *
+     * @return array $sectionsinfo - multilevel array with all course sections and pinned sections info (name, url and current if provided)
+     */
+    private function get_all_course_sections_info($courseinfo, $currentsectionnum = null) {
+        global $PAGE;
+        $allcoursesectionsinfo = $courseinfo->get_section_info_all();
+        $sectionsinfo = array();
+        $courseformat = $courseinfo->get_course()->format;
+
+        foreach ($allcoursesectionsinfo as $secnum => $secinfo) {
+            if (!$secinfo->uservisible) continue;   // SG - T-279 - skip not visible for user sections
+            $secname = course_get_format($PAGE->course)->get_section_name($secnum);
+            $seccustomnum = (isset($secinfo->customnumber)) ? $secinfo->customnumber : null;
+            $securl = new moodle_url('/course/view.php', array('id' => $PAGE->course->id, 'section' => $secinfo->section));
+
+            if (empty($secinfo->pinned)) {
+                $sectionsinfo['allcoursesections'][$secnum]['name'] = $secname;
+                $sectionsinfo['allcoursesections'][$secnum]['customnumber'] = $seccustomnum;
+                $sectionsinfo['allcoursesections'][$secnum]['url'] = $securl;
+                if ($secnum == $currentsectionnum) {
+                    $sectionsinfo['allcoursesections'][$secnum]['current'] = $secname;
+                }
+            }
+            if (!empty($secinfo->pinned))  {
+                $sectionsinfo['allcoursesectionspinned'][$secnum]['name'] = $secname;
+                $sectionsinfo['allcoursesectionspinned'][$secnum]['customnumber'] = $seccustomnum;
+                $sectionsinfo['allcoursesectionspinned'][$secnum]['url'] = $securl;
+                if ($secnum == $currentsectionnum) {
+                    $sectionsinfo['allcoursesectionspinned'][$secnum]['current'] = $secname;
+                }
+            }
+
+        }
+
+        // prepare '$sectionsinfo' for render in template
+        $sectionsinfo['allcoursesections'] = array_values($sectionsinfo['allcoursesections']);
+        if (!isset($sectionsinfo['allcoursesectionspinned'])) {
+            $sectionsinfo['allcoursesectionspinned'] = null;
+        } else {
+            $sectionsinfo['allcoursesectionspinned'] = array_values($sectionsinfo['allcoursesectionspinned']);
+        }
+
+        return $sectionsinfo;
+    }
+
+    /**
      * Output the html for a single section page .
      *
      * @param stdClass $course The course entry from DB
@@ -255,7 +305,22 @@ class format_grid_renderer extends format_section_renderer_base {
      * @param array $modnamesused (argument not used)
      * @param int $displaysection The section number in the course which is being displayed
      */
-    public function print_single_section_page($course, $sections, $mods, $modnames, $modnamesused, $displaysection) {
+    public function print_single_section_page($course, $sections, $mods, $modnames, $modnamesused, $displaysection) { 
+        
+        // SG - 20190122 - T-367 - show pinned sections on single section page
+        $sections = $this->get_all_course_sections_info(get_fast_modinfo($course), $displaysection);        
+        echo html_writer::start_tag('div', array('id' => 'gridiconcontainer'));
+            echo html_writer::start_tag('ul', array('class' => 'gridicons'));
+                echo html_writer::start_tag('div', array('class' => 'pinnedsections'));
+                    foreach ($sections['allcoursesectionspinned'] as $id => $pinsec) {
+                        echo html_writer::start_tag('li', array('class' => 'pinned'));
+                            echo html_writer::link(new moodle_url($pinsec['url'], array()), html_writer::tag('div', $pinsec['name'], array('class' => 'icon_content')));
+                        echo html_writer::end_tag('li');
+                    }
+                echo html_writer::end_tag('div');
+            echo html_writer::end_tag('ul');
+        echo html_writer::end_tag('div');
+           
         if (($this->section0attop) && ($this->settings['setsection0ownpagenogridonesection'] == 1)) {
             return parent::print_single_section_page($course, $sections, $mods, $modnames, $modnamesused, $displaysection);
         } else {
