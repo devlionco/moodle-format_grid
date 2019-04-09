@@ -553,6 +553,28 @@ class format_grid extends format_base {
         static $courseformatoptions = false;
         $course = $this->get_course();
         $lastsecnum = $this->get_last_section_number();
+        
+        // Help contacts section
+        $roles = role_get_names(); // Get all system roles.
+        $defaultchoices = [3]; // By defaut - editingteacher role is defined.
+        $helprolessection = array();
+        $helprolessection['helpcontactroles_title'] = array(
+            'label' => get_string('helpcontactroles_label', 'format_grid'),
+            'element_type' => 'header',
+        );
+        foreach ($roles as $key => $value) { // Define roles list for help contact. 
+            $helprolessection['helpcontactroles_'.$key] = array(
+                'label' => $value->localname,
+                'element_type' => 'advcheckbox',
+                'default' => in_array($value->id, $defaultchoices) ? 1 : 0,
+                'element_attributes' => array(
+                    '',
+                    array('group' => 1), 
+                    array(0, 1)
+                ), 
+                'help_component' => 'format_grid',
+            );
+        }
 
         if ($courseformatoptions === false) {
             /* Note: Because 'admin_setting_configcolourpicker' in 'settings.php' needs to use a prefixing '#'
@@ -727,6 +749,7 @@ class format_grid extends format_base {
                     'type' => PARAM_INT
                 )
             );
+            $courseformatoptions = array_merge_recursive($courseformatoptions, $helprolessection);
 
         }
         if ($foreditform && !isset($courseformatoptions['coursedisplay']['label'])) {
