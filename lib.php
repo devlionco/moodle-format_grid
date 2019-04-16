@@ -563,17 +563,19 @@ class format_grid extends format_base {
             'element_type' => 'header',
         );
         foreach ($roles as $key => $value) { // Define roles list for help contact. 
-            $helprolessection['helpcontactroles_'.$key] = array(
-                'label' => $value->localname,
-                'element_type' => 'advcheckbox',
-                'default' => in_array($value->id, $defaultchoices) ? 1 : 0,
-                'element_attributes' => array(
-                    '',
-                    array('group' => 1), 
-                    array(0, 1)
-                ), 
-                'help_component' => 'format_grid',
-            );
+            if ($key != 16) { // Do not show Supporter role. It is used by default.
+                $helprolessection['helpcontactroles_'.$key] = array(
+                    'label' => $value->localname,
+                    'element_type' => 'advcheckbox',
+                    'default' => in_array($value->id, $defaultchoices) ? 1 : 0,
+                    'element_attributes' => array(
+                        '',
+                        array('group' => 1), 
+                        array(0, 1)
+                    ), 
+                    'help_component' => 'format_grid',
+                );
+            }
         }
 
         if ($courseformatoptions === false) {
