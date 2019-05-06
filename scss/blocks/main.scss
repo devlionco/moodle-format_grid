@@ -64,11 +64,11 @@ div#gridmiddle-column > ul {
 .course-content ul.gtopics li.section {
     list-style: none;
     margin: 5px 0 0 0;
-    padding:0;
+    padding: 0;
 }
 
 .course-content ul.gtopics li.section .content {
-    margin:0 40px;
+    margin: 0 40px;
 }
 
 .course-content ul.gtopics li.section .side {
@@ -193,8 +193,8 @@ div#gridmiddle-column > ul {
     border-style: solid;
     /* Override Bootstrap V3 box sizing of .box-sizing(border-box); in scaffolding.less. */
     -webkit-box-sizing: content-box;
-       -moz-box-sizing: content-box;
-            box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
     overflow: visible;
     position: relative;
     text-align: center;
@@ -448,7 +448,8 @@ body.jsenabled #gridshadebox_content.hide_content {
     right: -18px;
 }
 
-.gridshadebox_arrow.gridshadebox_mobile, .gridshadebox_arrow.gridshadebox_mobile:hover {
+.gridshadebox_arrow.gridshadebox_mobile,
+.gridshadebox_arrow.gridshadebox_mobile:hover {
     opacity: 1;
 }
 
@@ -476,7 +477,8 @@ body.jsenabled #gridshadebox_content.hide_content {
     right: -31px;
 }
 
-.gridshadebox_arrow.gridshadebox_tablet, .gridshadebox_arrow.gridshadebox_tablet:hover {
+.gridshadebox_arrow.gridshadebox_tablet,
+.gridshadebox_arrow.gridshadebox_tablet:hover {
     opacity: 1;
 }
 
@@ -499,16 +501,16 @@ body.jsenabled #gridshadebox_content.hide_content {
 }
 /* @end */
 
-#page-course-view-grid{
-  ul:not(.gtopics-0){
-    #section-0{
-      display:none;
+#page-course-view-grid {
+    ul:not(.gtopics-0) {
+        #section-0 {
+            display: none;
+        }
     }
-  }
 }
 
-.single-section h3.sectionname{
-  color:#1177d1;
-  color:var(--primary);
-  font-size: 2.5rem;
-}  
+.single-section h3.sectionname {
+    color: #1177d1;
+    color: var(--primary);
+    font-size: 2.5rem;
+}
