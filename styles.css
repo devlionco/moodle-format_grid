@@ -468,8 +468,12 @@ body.jsenabled #gridshadebox_content.hide_content {
 
 .gridshadebox_arrow.gridshadebox_mobile,
 .gridshadebox_arrow.gridshadebox_mobile:hover {
+<<<<<<< HEAD
     opacity: 1;
 }
+=======
+  opacity: 1; }
+>>>>>>> 8761e9b... T#404_2  (update) styles for the grade indicator
 
 #gridshadebox_close.gridshadebox_mobile {
     height: 18px;
@@ -497,8 +501,12 @@ body.jsenabled #gridshadebox_content.hide_content {
 
 .gridshadebox_arrow.gridshadebox_tablet,
 .gridshadebox_arrow.gridshadebox_tablet:hover {
+<<<<<<< HEAD
     opacity: 1;
 }
+=======
+  opacity: 1; }
+>>>>>>> 8761e9b... T#404_2  (update) styles for the grade indicator
 
 #gridshadebox_content ul.gtopics {
     margin: 0 15px 10px;
@@ -527,10 +535,14 @@ body.jsenabled #gridshadebox_content.hide_content {
   font-size: 2.5rem; }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> d51a093... (update) translation
 =======
 .format-grid .gtopics .section:not(.hidden-section) +
 .hidden-section:before {
+=======
+.format-grid .gtopics .section:not(.hidden-section) + .hidden-section:before {
+>>>>>>> 8761e9b... T#404_2  (update) styles for the grade indicator
   content: "";
   display: block;
   position: static;
@@ -569,7 +581,28 @@ body.jsenabled #gridshadebox_content.hide_content {
     -ms-flex-order: 3;
         order: 3; }
 
+<<<<<<< HEAD
 >>>>>>> 75c8c6e... T#355 (update) remove arrows on the top navigations
+=======
+.format-grid .section li.activity .mod-indent-outer {
+  display: block; }
+  .format-grid .section li.activity .mod-indent-outer > div {
+    display: -ms-flexbox;
+    display: flex; }
+
+.format-grid .section li.activity .actions {
+  position: static;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center; }
+
+.format-grid .section li.activity .activityinstance {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-positive: 1;
+      flex-grow: 1; }
+
+>>>>>>> 8761e9b... T#404_2  (update) styles for the grade indicator
 #gridiconcontainer ul.gridicons {
   position: relative;
   padding-top: 60px;
