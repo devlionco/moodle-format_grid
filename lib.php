@@ -764,7 +764,19 @@ class format_grid extends format_base {
                 'setsection0ownpagenogridonesection' => array(
                     'default' => get_config('format_grid', 'defaultsection0ownpagenogridonesection'),
                     'type' => PARAM_INT
-                )
+                ),
+                'showcoursefullname' => array(
+                    'label' => get_string('showcoursefullname', 'format_grid'),
+                    'element_type' => 'advcheckbox',
+                    'default' => 1,
+                    'element_attributes' => array(
+                        '',
+                        array('group' => 1),
+                        array(0, 1)
+                    ),
+                    'help' => "showcoursefullnamedesc",
+                    'help_component' => 'format_grid',
+                ),
             );
             $courseformatoptions = array_merge_recursive($courseformatoptions, $helprolessection);
 
