@@ -560,7 +560,8 @@ class format_grid extends format_base {
         static $courseformatoptions = false;
         $course = $this->get_course();
         $lastsecnum = $this->get_last_section_number();
-        
+        $courseconfig = null;
+
         // Help contacts section
         $roles = role_get_names(); // Get all system roles.
         $defaultchoices = [3]; // By defaut - editingteacher role is defined.
@@ -569,7 +570,7 @@ class format_grid extends format_base {
             'label' => get_string('helpcontactroles_label', 'format_grid'),
             'element_type' => 'header',
         );
-        foreach ($roles as $key => $value) { // Define roles list for help contact. 
+        foreach ($roles as $key => $value) { // Define roles list for help contact.
             if ($key != 16) { // Do not show Supporter role. It is used by default.
                 $helprolessection['helpcontactroles_'.$key] = array(
                     'label' => $value->localname,
@@ -577,9 +578,9 @@ class format_grid extends format_base {
                     'default' => in_array($value->id, $defaultchoices) ? 1 : 0,
                     'element_attributes' => array(
                         '',
-                        array('group' => 1), 
+                        array('group' => 1),
                         array(0, 1)
-                    ), 
+                    ),
                     'help_component' => 'format_grid',
                 );
             }
@@ -600,6 +601,10 @@ class format_grid extends format_base {
                     WHERE course = ?', array($courseid));
             }
             $courseformatoptions = array(
+                'numsections' => array(
+                    'default' => $defaultnumsections,
+                    'type' => PARAM_INT,
+                ),
                 'displayunits' => array(
                     'default' => 1,
                     'type' => PARAM_RAW
@@ -795,98 +800,129 @@ class format_grid extends format_base {
             for ($i = 0; $i <= $courseconfig->maxsections; $i++) {
                 $sectionmenu[$i] = "$i";
             }
-                $courseformatoptionsedit['displayunits'] = array(
-                    'label' => get_string('displayunits', 'format_grid'),
+            $courseformatoptionsedit = array(
+                'numsections' => array(
+                    'label' => new lang_string('numbersections', 'format_grid'),
+                    'element_type' => 'select',
+                    'element_attributes' => array($sectionmenu),
+                ),
+                'hiddensections' => array(
+                    'label' => new lang_string('hiddensections'),
+                    'help' => 'hiddensections',
+                    'help_component' => 'moodle',
                     'element_type' => 'select',
                     'element_attributes' => array(
                         array(
-                            1 => new lang_string('yes'),
-                            0 => new lang_string('no'),
+                            0 => new lang_string('hiddensectionscollapsed'),
+                            1 => new lang_string('hiddensectionsinvisible')
                         )
                     ),
-                    'help' => "displayunitsdesc",
-                    'help_component' => 'format_grid',
-                );
-                $courseformatoptionsedit['displaymessages'] = array(
-                    'label' => get_string('displaymessages', 'format_grid'),
+                ),
+                'coursedisplay' => array(
+                    'label' => new lang_string('coursedisplay'),
                     'element_type' => 'select',
                     'element_attributes' => array(
                         array(
-                            1 => new lang_string('yes'),
-                            0 => new lang_string('no'),
+                            COURSE_DISPLAY_SINGLEPAGE => new lang_string('coursedisplay_single'),
+                            COURSE_DISPLAY_MULTIPAGE => new lang_string('coursedisplay_multi')
                         )
                     ),
-                    'help' => "displaymessagesdesc",
-                    'help_component' => 'format_grid',
-                );
-                $courseformatoptionsedit['displaygrades'] = array(
-                    'label' => get_string('displaygrades', 'format_grid'),
-                    'element_type' => 'select',
-                    'element_attributes' => array(
-                        array(
-                            1 => new lang_string('yes'),
-                            0 => new lang_string('no'),
-                        )
-                    ),
-                    'help' => "displaygradesdesc",
-                    'help_component' => 'format_grid',
-                );
-                $courseformatoptionsedit['showbagestag'] = array(
-                    'label' => get_string('showbagestag', 'format_grid'),
-                    'element_type' => 'select',
-                    'element_attributes' => array(
-                        array(
-                            1 => new lang_string('yes'),
-                            0 => new lang_string('no'),
-                        )
-                    ),
-                    'help' => "showbagestagdesc",
-                    'help_component' => 'format_grid',
-                );
-                $courseformatoptionsedit['showcertificatestag'] = array(
-                    'label' => get_string('showcertificatestag', 'format_grid'),
-                    'element_type' => 'select',
-                    'element_attributes' => array(
-                        array(
-                            1 => new lang_string('yes'),
-                            0 => new lang_string('no'),
-                        )
-                    ),
-                    'help' => "showcertificatestagdesc",
-                    'help_component' => 'format_grid',
-                );
-                // define display or not "attendanceinfo show/hide setting"
-                $attmodid = $DB->get_record('modules', array('name' => 'attendance'), 'id')->id; // get attendance module id in system
-                $att = $DB->get_record('course_modules', array('course' => $course->id, 'module' => $attmodid, 'deletioninprogress' => 0), 'instance', IGNORE_MULTIPLE); // get first attedndance instance on current course
-                if ($att) {
-                    $courseformatoptions['displayattendanceinfo'] = array(
-                            'label' => get_string('displayattendanceinfo', 'format_grid'),
-                            'element_type' => 'select',
-                            'element_attributes' => array(
-                                array(
-                                    1 => new lang_string('yes'),
-                                    0 => new lang_string('no'),
-                                )
-                            ),
-                            'help' => "displayattendanceinfodesc",
-                            'help_component' => 'format_grid',
-                        );
-                } else {
-                    $courseformatoptions['displayattendanceinfo'] = array(
-                        'element_type' => 'hidden'
-                    );
-                }
+                    'help' => 'coursedisplay',
+                    'help_component' => 'moodle'
+                )
+            );
+    $courseformatoptionsedit['displayunits'] = array(
+    'label' => get_string('displayunits', 'format_grid'),
+    'element_type' => 'select',
+    'element_attributes' => array(
+        array(
+            1 => new lang_string('yes'),
+            0 => new lang_string('no'),
+        )
+    ),
+    'help' => "displayunitsdesc",
+    'help_component' => 'format_grid',
+);
+$courseformatoptionsedit['displaymessages'] = array(
+    'label' => get_string('displaymessages', 'format_grid'),
+    'element_type' => 'select',
+    'element_attributes' => array(
+        array(
+            1 => new lang_string('yes'),
+            0 => new lang_string('no'),
+        )
+    ),
+    'help' => "displaymessagesdesc",
+    'help_component' => 'format_grid',
+);
+$courseformatoptionsedit['displaygrades'] = array(
+    'label' => get_string('displaygrades', 'format_grid'),
+    'element_type' => 'select',
+    'element_attributes' => array(
+        array(
+            1 => new lang_string('yes'),
+            0 => new lang_string('no'),
+        )
+    ),
+    'help' => "displaygradesdesc",
+    'help_component' => 'format_grid',
+);
+$courseformatoptionsedit['showbagestag'] = array(
+    'label' => get_string('showbagestag', 'format_grid'),
+    'element_type' => 'select',
+    'element_attributes' => array(
+        array(
+            1 => new lang_string('yes'),
+            0 => new lang_string('no'),
+        )
+    ),
+    'help' => "showbagestagdesc",
+    'help_component' => 'format_grid',
+);
+$courseformatoptionsedit['showcertificatestag'] = array(
+    'label' => get_string('showcertificatestag', 'format_grid'),
+    'element_type' => 'select',
+    'element_attributes' => array(
+        array(
+            1 => new lang_string('yes'),
+            0 => new lang_string('no'),
+        )
+    ),
+    'help' => "showcertificatestagdesc",
+    'help_component' => 'format_grid',
+);
+// define display or not "attendanceinfo show/hide setting"
+$attmodid = $DB->get_record('modules', array('name' => 'attendance'), 'id')->id; // get attendance module id in system
+$att = $DB->get_record('course_modules', array('course' => $course->id, 'module' => $attmodid, 'deletioninprogress' => 0), 'instance', IGNORE_MULTIPLE); // get first attedndance instance on current course
+if ($att) {
+    $courseformatoptions['displayattendanceinfo'] = array(
+            'label' => get_string('displayattendanceinfo', 'format_grid'),
+            'element_type' => 'select',
+            'element_attributes' => array(
+                array(
+                    1 => new lang_string('yes'),
+                    0 => new lang_string('no'),
+                )
+            ),
+            'help' => "displayattendanceinfodesc",
+            'help_component' => 'format_grid',
+        );
+} else {
+    $courseformatoptions['displayattendanceinfo'] = array(
+        'element_type' => 'hidden'
+    );
+}
 
-                // SG - generate select list for 'displaysectionsnum' option
-                $seclist = range(0, $lastsecnum);
-                $seclist += array(9999 => new lang_string('displayallsections', 'format_grid')); // add last item to select with value=9999 - conditionally unlimited sec number
-                $courseformatoptionsedit['displaysectionsnum'] = array(
-                    'label' => new lang_string('displaysectionsnum', 'format_grid'),
-                    'help' => 'displaysectionsnum',
-                    'help_component' => 'format_grid',
-                    'element_type' => 'select',
-                    'element_attributes' => array($seclist),
-                );
+// SG - generate select list for 'displaysectionsnum' option
+$seclist = range(0, $lastsecnum);
+$seclist += array(9999 => new lang_string('displayallsections', 'format_grid')); // add last item to select with value=9999 - conditionally unlimited sec number
+$courseformatoptionsedit['displaysectionsnum'] = array(
+    'label' => new lang_string('displaysectionsnum', 'format_grid'),
+    'help' => 'displaysectionsnum',
+    'help_component' => 'format_grid',
+    'element_type' => 'select',
+    'element_attributes' => array($seclist),
+);
 
                 $courseformatoptionsedit['hiddensections'] = array(
                     'label' => new lang_string('hiddensections'),
@@ -900,9 +936,9 @@ class format_grid extends format_base {
                         )
                     ),
                 );
-                $courseformatoptionsedit['nowpinned'] = array (
-                    'element_type' => 'hidden',
-                );
+$courseformatoptionsedit['nowpinned'] = array (
+    'element_type' => 'hidden',
+);
                 $courseformatoptionsedit['coursedisplay'] = array(
                     'label' => new lang_string('coursedisplay'),
                     'element_type' => 'select',

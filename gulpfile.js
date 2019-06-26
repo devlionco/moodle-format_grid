@@ -58,8 +58,8 @@ gulp.task("dev", function(cb) {
   sequence (
     'clean',
     'style',
-    'minjs',
-    'purge_caches',
+    // 'minjs',
+    // 'purge_caches',
     cb
   );
 });

@@ -246,7 +246,7 @@ class format_grid_renderer extends format_section_renderer_base {
     }
 
     /**
-     * Returns info about course sections. Is used in header qick navigation
+     * Output the html for a single section page.
      *
      * @param course_modinfo $courseinfo
      * @param int $currentsectionnum
@@ -661,7 +661,7 @@ class format_grid_renderer extends format_section_renderer_base {
                                                'pixattr' => array('class' => '', 'alt' => $unpinnedsection),
                                                'attr' => array('class' => 'editing_highlight', 'title' => $unpinnedsection,
                                                'data-action' => 'topinsection'));
-            }
+        }
         }
 
         // SG - add show/hide eye control for sec0
@@ -964,6 +964,9 @@ class format_grid_renderer extends format_section_renderer_base {
                 );
                 if ($this->courseformat->is_section_current($section)) {
                     $liattributes['class'] = 'currenticon';
+                }
+                if ($thissection->pinned) {
+                    $liattributes['class'] = 'pinned ';
                 }
                 if ($thissection->section > $displaysectionsnum && $editing) {
                     $liattributes['class'] = 'hidden-section ';  // add class for not visible sections
