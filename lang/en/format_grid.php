@@ -63,6 +63,10 @@ $string['showfromothers'] = 'Show section'; // No longer used kept for legacy ve
 $string['currentsection'] = 'This section'; // No longer used kept for legacy versions.
 $string['markedthissection'] = 'This section is highlighted as the current section';
 $string['markthissection'] = 'Highlight this section as the current section';
+$string['pinnedsection'] = 'This section is pinned';
+$string['unpinnedsection'] = 'Pin this section to show it in the front';
+$string['topinsection'] = 'Pin section';
+$string['tounpinsection'] = 'Unpin section';
 
 // Moodle 3.0 Enhancement.
 $string['editsection'] = 'Edit section';
